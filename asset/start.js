@@ -54,7 +54,10 @@ exports.test = () => {
               if(err) return console.log('http://localhost:1000/copy failed : not found get.json file')
               fs.readFile('./data/copy.json', (err,dataCopy) => {
                 if(err) return console.log('http://localhost:1000/copy failed : copy.json file is not created')
-                if(dataGet == dataCopy) console.log('http://localhost:1000/copy  result: passed')
+                dataGet = JSON.parse(dataGet)
+                dataCopy = JSON.parse(dataCopy)
+                if(dataGet.name == dataCopy.name && dataGet.song == dataCopy.song && dataGet.lyrics == dataCopy.lyrics) 
+                  console.log('http://localhost:1000/copy  result: passed')
                 else console.log('http://localhost:1000/copy result: ** not pass **')
               })
           })
